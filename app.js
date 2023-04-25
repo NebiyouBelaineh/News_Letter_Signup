@@ -57,13 +57,7 @@ app.post("/", function (req, res) {
   request.write(jsonData);
   request.end(); //Specify end of request
 
-  //   console.log("Request Status Code:  " + );
-  //   if(res.statusCode === 200){
-  //     res.sendFile(__dirname + "/success.html");
-  //   }
-  //   else{
-  //     res.sendFile(__dirname + "/faliure.html");
-  //   }
+  
 });
 
 app.post("/faliure", function(req,res){
