@@ -35,7 +35,7 @@ app.post("/", function (req, res) {
   const url = "https://" + dc + ".api.mailchimp.com/3.0/lists/7b448776fa";
   const options = {
     method: "POST",
-    auth: "NebiyouBelaineh:2ca6a902e413a8c87c0dd500d54c9d0e-us221",//Not correct, fix later
+    auth: "NebiyouBelaineh:95ab0587ba0483cdc27820487695a7c6-us21",//Not correct, fix later
   };
 
   const request = https.request(url, options, function (response) {
@@ -68,10 +68,4 @@ app.listen(3000, function () {
   console.log("Server started on port 3000");
 });
 
-// Mailchimp API KEY
 
-// 2ca6a902e413a8c87c0dd500d54c9d0e-us21
-
-//Audinece ID
-
-// 7b448776fa
