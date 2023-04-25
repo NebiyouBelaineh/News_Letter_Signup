@@ -2,11 +2,13 @@ const express = require("express");
 const bodyParser = require("body-parser");
 const request = require("request");
 const https = require("https");
+const { from } = require("form-data");
+const { apiPass } = require("./config");
 
 const app = express();
 
 const localPort = 3000;
-
+const key = apiPass;
 
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(express.static(__dirname + "/public/"));
@@ -38,39 +40,33 @@ app.post("/", function (req, res) {
   const url = "https://" + dc + ".api.mailchimp.com/3.0/lists/7b448776fa";
   const options = {
     method: "POST",
-    auth: "NebiyouBelaineh:95ab0587ba0483cdc27820487695a7c6-us21",//Not correct, fix later
+    auth: "NebiyouBelaineh:" + key,
   };
 
   const request = https.request(url, options, function (response) {
     if (response.statusCode === 200) {
-        res.sendFile(__dirname + "/success.html");
-      } else {
-        res.sendFile(__dirname + "/faliure.html");
-      }
-      
-    response.on("data", function (data) {
+      res.sendFile(__dirname + "/success.html");
+    } else {
+      res.sendFile(__dirname + "/faliure.html");
+    }
 
+    response.on("data", function (data) {
       const parsedJSON = JSON.parse(data); //Parsed JSON data from HTTPS
 
-      // console.log(parsedJSON);
+      console.log(parsedJSON);
 
       //Section to send response to the user on sign up attempt.
     });
   });
   request.write(jsonData);
   request.end(); //Specify end of request
-
-  
 });
 
-app.post("/faliure", function(req,res){
-  res.redirect('/');
-})
-
+app.post("/faliure", function (req, res) {
+  res.redirect("/");
+});
 
 //Port may need changing
 app.listen(localPort, function () {
-  console.log("Server started on port 3000");
+  console.log("Server started on port " + localPort);
 });
-
-
