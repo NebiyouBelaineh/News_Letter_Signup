@@ -5,6 +5,7 @@ const https = require("https");
 
 const app = express();
 
+const localPort = 3000;
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(express.static(__dirname + "/public/"));
 
@@ -64,7 +65,9 @@ app.post("/faliure", function(req,res){
   res.redirect('/');
 })
 
-app.listen(3000, function () {
+
+//Port may need changing
+app.listen(localPort, function () {
   console.log("Server started on port 3000");
 });
 
