@@ -1,10 +1,12 @@
+require("dotenv").config();
 const express = require("express");
 const bodyParser = require("body-parser");
 const request = require("request");
 const https = require("https");
-require("dotenv").config();
+
 
 const app = express();
+
 
 const localPort = process.env.LOCALHOST_PORT;
 
@@ -51,7 +53,7 @@ app.post("/", function (req, res) {
     response.on("data", function (data) {
       const parsedJSON = JSON.parse(data); //Parsed JSON data from HTTPS
 
-      console.log(parsedJSON);
+      // console.log(parsedJSON);
       // res.write(parsedJSON);
       //Section to send response to the user on sign up attempt.
     });
