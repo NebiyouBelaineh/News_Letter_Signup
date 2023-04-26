@@ -2,13 +2,11 @@ const express = require("express");
 const bodyParser = require("body-parser");
 const request = require("request");
 const https = require("https");
-const { from } = require("form-data");
-const { apiPass } = require("./config");
+require("dotenv").config();
 
 const app = express();
 
-const localPort = 3000;
-const key = apiPass;
+const localPort = process.env.LOCALHOST_PORT;
 
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(express.static(__dirname + "/public/"));
@@ -40,7 +38,7 @@ app.post("/", function (req, res) {
   const url = "https://" + dc + ".api.mailchimp.com/3.0/lists/7b448776fa";
   const options = {
     method: "POST",
-    auth: "NebiyouBelaineh:" + apiPass,
+    auth: "NebiyouBelaineh:" + process.env.API_ID,
   };
 
   const request = https.request(url, options, function (response) {
@@ -54,7 +52,7 @@ app.post("/", function (req, res) {
       const parsedJSON = JSON.parse(data); //Parsed JSON data from HTTPS
 
       console.log(parsedJSON);
-
+      // res.write(parsedJSON);
       //Section to send response to the user on sign up attempt.
     });
   });
