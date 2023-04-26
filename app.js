@@ -36,8 +36,8 @@ app.post("/", function (req, res) {
   };
   const jsonData = JSON.stringify(data); //To convert JSON to string object
 
-  const dc = "us21";
-  const url = "https://" + dc + ".api.mailchimp.com/3.0/lists/7b448776fa";
+
+  const url = "https://" + process.env.DATA_CENTER + ".api.mailchimp.com/3.0/lists/" + process.env.AUDIENCE_LIST;
   const options = {
     method: "POST",
     auth: "NebiyouBelaineh:" + process.env.API_ID,
@@ -53,8 +53,7 @@ app.post("/", function (req, res) {
     response.on("data", function (data) {
       const parsedJSON = JSON.parse(data); //Parsed JSON data from HTTPS
 
-      // console.log(parsedJSON);
-      // res.write(parsedJSON);
+      console.log(parsedJSON);
       //Section to send response to the user on sign up attempt.
     });
   });
@@ -67,6 +66,6 @@ app.post("/faliure", function (req, res) {
 });
 
 //Port may need changing
-app.listen(localPort, function () {
+app.listen((localPort || process.env.PORT), function () {
   console.log("Server started on port " + localPort);
 });
