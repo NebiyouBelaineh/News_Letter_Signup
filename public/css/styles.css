@@ -1,9 +1,18 @@
 body {
   height: 100%;
 }
-.faliure{
+/* .faliure{
   font-weight: 400;
-  
+  padding-bottom: 20px;
+} */
+.success,.faliure{
+  font-weight: 400;
+  padding-bottom: 20px;
+}
+
+.signup-msg{
+  font-family: 'Bruno Ace SC', cursive;
+  font-weight: 700;
 }
 body {
   display: -ms-flexbox;
@@ -17,7 +26,7 @@ body {
   justify-content: center;
   padding-top: 40px;
   padding-bottom: 40px;
-  background-color: #cdcbcb77;
+  background-color: #e3d1f077;
 }
 
 .form-signin {
